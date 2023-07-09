@@ -11,8 +11,8 @@
     <h1>Meowville: A Cat Lover's Paradise</h1>
 
     <section id="create-cat">
-      <h2 style="text-align: center;">Create a Cat</h2>
-      <form action="post">
+      <h2 style="text-align: center">Create a Cat</h2>
+      <form id="catForm">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" />
 
@@ -32,8 +32,8 @@
     </section>
 
     <section id="cats">
-      <h2 style="text-align: center;">List of Cats</h2>
-      <ul class="cat-list">
+      <h2 style="text-align: center">List of Cats</h2>
+      <ul id="cat-list" class="cat-list">
         <li class="cat-item">
           <a class="cat-item-link" href="#">
             <img
@@ -63,5 +63,76 @@
         </li>
       </ul>
     </section>
+    <script>
+      // Create a function to set .cat-item background color based on the cat-item-name value
+      function generateLinearGradient(text) {
+        let hash = 0;
+        for (let i = 0; i < text.length; i++) {
+          hash = text.charCodeAt(i) + ((hash << 5) - hash);
+        }
+
+        let r = (hash & 0xff0000) >> 16;
+        let g = (hash & 0x00ff00) >> 8;
+        let b = hash & 0x0000ff;
+
+        let color1 = `rgb(${r}, ${g}, ${b})`;
+        let color2 = `rgb(${g}, ${b}, ${r})`;
+
+        let linearGradient = `linear-gradient(45deg, ${color1}, ${color2})`;
+
+        return linearGradient;
+      }
+
+      function setCatItemColor() {
+        const catItems = document.querySelectorAll(".cat-item");
+        catItems.forEach((catItem) => {
+          const catItemName = catItem.querySelector(".cat-item-name");
+          const catItemNameValue = catItemName.textContent;
+          // Random random gradient color base on the catItemNameValue text
+          const linearGradient = generateLinearGradient(catItemNameValue);
+          catItem.style.background = linearGradient;
+        });
+      }
+
+      // Function to handle form submission
+      function addCatItem(event) {
+        event.preventDefault();
+
+        // Get form values
+        let name = document.getElementById("name").value;
+        let stage = document.getElementById("stage").value;
+        let breed = document.getElementById("breed").value;
+
+        // Create cat item HTML
+        let catItemHTML = `
+            <li class="cat-item">
+              <a class="cat-item-link" href="#">
+                <img
+                  class="cat-item-img"
+                  src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2021/09-24/American+Shorthair+kitten+ready+to+pounce-min.jpg"
+                />
+                <div class="cat-item-desc">
+                  <h3 class="cat-item-name">${name}</h3>
+                  <p class="cat-item-stage">${stage}</p>
+                  <p class="cat-item-breed">${breed}</p>
+                </div>
+              </a>
+            </li>
+          `;
+
+        // Append cat item to the cat list
+        let catList = document.getElementById("cat-list");
+        catList.insertAdjacentHTML("afterbegin", catItemHTML);
+
+        // Reset the form
+        document.getElementById("catForm").reset();
+        setCatItemColor();
+      }
+      // Add event listener to the form
+      let catForm = document.getElementById("catForm");
+      catForm.addEventListener("submit", addCatItem);
+
+      setCatItemColor();
+    </script>
   </body>
 </html>
