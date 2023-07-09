@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Static Template</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <h1>Meowville: A Cat Lover's Paradise</h1>
+
+    <section id="create-cat">
+      <h2 style="text-align: center;">Create a Cat</h2>
+      <form action="post">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" />
+
+        <label for="stage">Stage</label>
+        <select id="stage" name="stage">
+          <option value="" selected>Select stage</option>
+          <option value="kitten">Kitten</option>
+          <option value="young">Young</option>
+          <option value="adult">Adult</option>
+        </select>
+
+        <label for="breed">Breed</label>
+        <input type="text" id="breed" name="breed" />
+
+        <button type="submit">Create</button>
+      </form>
+    </section>
+
+    <section id="cats">
+      <h2 style="text-align: center;">List of Cats</h2>
+      <ul class="cat-list">
+        <li class="cat-item">
+          <a class="cat-item-link" href="#">
+            <img
+              class="cat-item-img"
+              src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2021/09-24/American+Shorthair+kitten+ready+to+pounce-min.jpg"
+            />
+            <div class="cat-item-desc">
+              <h3 class="cat-item-name">Byron</h3>
+              <p class="cat-item-stage">Kitten</p>
+              <p class="cat-item-breed">American Short Hair</p>
+            </div>
+          </a>
+        </li>
+
+        <li class="cat-item">
+          <a class="cat-item-link" href="#">
+            <img
+              class="cat-item-img"
+              src="https://www.thesprucepets.com/thmb/fQmAnca8T3DT_7OycldvdcqZLUI=/3000x0/filters:no_upscale():strip_icc()/breeds-domestics-and-color-patterns-554862-hero-478231530f2d48d99ba41cededf48c40.jpg"
+            />
+            <div class="cat-item-desc">
+              <h3 class="cat-item-name">Missy</h3>
+              <p class="cat-item-stage">Young</p>
+              <p class="cat-item-breed">Domestic Short Hair</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </body>
+</html>
